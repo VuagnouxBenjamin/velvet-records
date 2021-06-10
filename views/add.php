@@ -6,11 +6,12 @@
 
 <div class="w-10/12 mx-auto">
     <h1 class="text-3xl font-bold">Ajouter un disque</h1>
-    <form action="../models/forms/add.script.php" method="post" enctype="multipart/form-data">
+    <form id="form" action="../models/forms/add.script.php" method="post" enctype="multipart/form-data">
         <div class="flex my-2">
             <div class="flex flex-col w-80">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="border" value="">
+                <input type="text" name="title" id="title" class="border" value="" required>
+                <p id="err_title" class="text-red-500"></p>
             </div>
             <div class="flex flex-col w-80 ml-10">
                 <select name="Artist_id" id="Artist">
@@ -23,21 +24,25 @@
         <div class="flex my-2">
             <div class="flex flex-col w-80">
                 <label for="Year">Year</label>
-                <input type="text" name="Year" id="Year" class="border" value="">
+                <input type="text" name="Year" id="Year" class="border" value="" required>
+                <p id="err_year" class="text-red-500"></p>
             </div>
             <div class="flex flex-col w-80 ml-10">
                 <label for="Genre">Genre</label>
-                <input type="text" name="Genre" id="Genre" class="border" value="">
+                <input type="text" name="Genre" id="Genre" class="border" value="" required>
+                <p id="err_genre" class="text-red-500"></p>
             </div>
         </div>
         <div class="flex my-2">
             <div class="flex flex-col w-80">
                 <label for="Label">Label</label>
-                <input type="text" name="Label" id="Label" class="border" value="">
+                <input type="text" name="Label" id="Label" class="border" value="" required>
+                <p id="err_label" class="text-red-500"></p>
             </div>
             <div class="flex flex-col w-80 ml-10">
                 <label for="Price">Price</label>
-                <input type="text" name="Price" id="Price" class="border" value="">
+                <input type="text" name="Price" id="Price" class="border" value="" required>
+                <p id="err_price" class="text-red-500"></p>
             </div>
         </div>
 
@@ -52,6 +57,8 @@
     </div>
     </form>
 </div>
+
+<script src="../public/js/update.form.js"></script>
 
 <!-- end of recording & declaration of $content -->
 <?php $content = ob_get_clean(); ?>

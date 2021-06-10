@@ -1,16 +1,17 @@
 <!-- Adding a titre for the template -->
-<?php $title = 'Modification - ' . $disk_data->disc_title; ?>
+<?php $title = 'Modification' ?>
 
 <!-- recording html after ob_start() -->
 <?php ob_start(); ?>
 
 <div class="w-10/12 mx-auto">
     <h1 class="text-3xl font-bold">Details</h1>
-    <form action="../models/forms/update.script.php" method="post" enctype="multipart/form-data">
+    <form id="form" action="../models/forms/update.script.php" method="post" enctype="multipart/form-data">
         <div class="flex my-2">
             <div class="flex flex-col w-80">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" class="border" value="<?= $disk_data->disc_title ?>">
+                <p id="err_title" class="text-red-500"></p>
             </div>
            
                 <select name="Artist_id" id="Artist">
@@ -24,20 +25,24 @@
             <div class="flex flex-col w-80">
                 <label for="Year">Year</label>
                 <input type="text" name="Year" id="Year" class="border" value="<?= $disk_data->disc_year ?>">
+                <p id="err_year" class="text-red-500"></p>
             </div>
             <div class="flex flex-col w-80 ml-10">
                 <label for="Genre">Genre</label>
                 <input type="text" name="Genre" id="Genre" class="border" value="<?= $disk_data->disc_genre ?>">
+                <p id="err_genre" class="text-red-500"></p>
             </div>
         </div>
         <div class="flex my-2">
             <div class="flex flex-col w-80">
                 <label for="Label">Label</label>
                 <input type="text" name="Label" id="Label" class="border" value="<?= $disk_data->disc_label ?>">
+                <p id="err_label" class="text-red-500"></p>
             </div>
             <div class="flex flex-col w-80 ml-10">
                 <label for="Price">Price</label>
                 <input type="text" name="Price" id="Price" class="border" value="<?= $disk_data->disc_price ?>">
+                <p id="err_price" class="text-red-500"></p>
             </div>
         </div>
         <input type="hidden" name="id" value="<?= $disk_data->disc_id ?>">
