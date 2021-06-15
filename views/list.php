@@ -4,26 +4,28 @@
 <!-- recording html after ob_start() -->
 <?php ob_start(); ?>
 
-<div class="w-10/12 mx-auto">
-    <div class="mt-10 flex justify-between">
-        <h1 class="text-4xl font-bold">Liste des disques (<?= $num_of_disks ?>)</h1>
-        <a class="bg-blue-700 text-white px-5 py-2 rounded-lg hover:bg-blue-600"  href="index.php?action=add" role="button">Ajouter</a>
+<div class="mt-2"">
+    <div class="d-flex justify-content-between">
+        <h1 class="">Liste des disques (<?= $num_of_disks ?>)</h1>
+        <a class="btn btn-primary my-auto"  href="index.php?action=add" role="button">Ajouter</a>
     </div>
 
-    <div class="mt-5 flex flex-wrap justify-between">
+    <div class="mt-2 row">
         <?php foreach($disk_datas as $disk) : ?>
 
-        <div class="flex mt-5">
-            <img src="/public/images/<?= $disk->disc_picture ?>" alt="" class="w-80" >
-            <div class="flex flex-col justify-between my-5 mx-10">
-                <div class="w-60" >
-                    <h2 class="text-2xl font-bold"><?= $disk->disc_title ?></h2>
-                    <h3 class="text-xl"><?= $disk->artist_name ?></h3>
-                    <p><span class="font-bold">Label : </span><?= $disk->disc_label ?></p>
-                    <p><span class="font-bold">Year : </span><?= $disk->disc_year ?></p>
-                    <p><span class="font-bold">Genre : </span><?= $disk->disc_genre ?></p>
+        <div class="col-12 col-sm-6 col-lg-4 my-2">
+            <img src="/public/images/<?= $disk->disc_picture ?>" alt="" class="img-thumbnail w-100" >
+            <div class="">
+                <div class="" >
+                    <h2 class="fs-3 text my-1 fw-bold"><?= $disk->disc_title ?></h2>
+                    <h3 class="fs-5 text my-1 fw-bold"><?= $disk->artist_name ?></h3>
+                    <p class="my-1"><span class="fw-bold">Label : </span><?= $disk->disc_label ?></p>
+                    <p class="my-1"><span class="fw-bold">Year : </span><?= $disk->disc_year ?></p>
+                    <p class="my-1"><span class="fw-bold">Genre : </span><?= $disk->disc_genre ?></p>
                 </div>
-                <a class="bg-blue-700 text-white px-5 py-2 rounded-lg hover:bg-blue-600" href="index.php?action=detail&id=<?= $disk->disc_id ?>" role="button">Détails</a>
+                <div class="d-grid">
+                    <a class="btn btn-primary my-auto" href="index.php?action=detail&id=<?= $disk->disc_id ?>" role="button">Détails</a>
+                </div>
             </div>
         </div>
 

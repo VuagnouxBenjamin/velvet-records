@@ -4,46 +4,48 @@
 <!-- recording html after ob_start() -->
 <?php ob_start(); ?>
 
-<div class="w-10/12 mx-auto">
-    <h1 class="text-3xl font-bold">Details</h1>
-    <div class="flex my-2">
-        <div class="flex flex-col w-80">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="border" value="<?= $disk_data->disc_title ?>" disabled>
+<div class="">
+    <h1 class="">Details</h1>
+    <div class="row">
+        <div class="d-flex flex-column col-12 col-md-6 mt-2">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" value="<?= $disk_data->disc_title ?>" disabled>
         </div>
-        <div class="flex flex-col w-80 ml-10">
-            <label for="Artist">Artist</label>
-            <input type="text" name="Artist" id="Artist" class="border" value="<?= $disk_data->artist_name ?>" disabled>
-        </div>
-    </div>
-    <div class="flex my-2">
-        <div class="flex flex-col w-80">
-            <label for="Year">Year</label>
-            <input type="text" name="Year" id="Year" class="border" value="<?= $disk_data->disc_year ?>" disabled>
-        </div>
-        <div class="flex flex-col w-80 ml-10">
-            <label for="Genre">Genre</label>
-            <input type="text" name="Genre" id="Genre" class="border" value="<?= $disk_data->disc_genre ?>" disabled>
+        <div class="d-flex flex-column col-12 col-md-6 mt-2">
+            <label for="Artist" class="form-label">Artist</label>
+            <input type="text" name="Artist" id="Artist" class="form-control" value="<?= $disk_data->artist_name ?>" disabled>
         </div>
     </div>
-    <div class="flex my-2">
-        <div class="flex flex-col w-80">
-            <label for="Label">Label</label>
-            <input type="text" name="Label" id="Label" class="border" value="<?= $disk_data->disc_label ?>" disabled>
+    <div class="row">
+        <div class="d-flex flex-column col-12 col-md-6 mt-2">
+            <label for="Year" class="form-label">Year</label>
+            <input type="text" name="Year" id="Year" class="form-control" value="<?= $disk_data->disc_year ?>" disabled>
         </div>
-        <div class="flex flex-col w-80 ml-10">
-            <label for="Price">Price</label>
-            <input type="text" name="Price" id="Price" class="border" value="<?= $disk_data->disc_price ?> €" disabled>
+        <div class="d-flex flex-column col-12 col-md-6 mt-2">
+            <label for="Genre" class="form-label">Genre</label>
+            <input type="text" name="Genre" id="Genre" class="form-control" value="<?= $disk_data->disc_genre ?>" disabled>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex flex-column col-12 col-md-6 mt-2">
+            <label for="Label" class="form-label">Label</label>
+            <input type="text" name="Label" id="Label" class="form-control" value="<?= $disk_data->disc_label ?>" disabled>
+        </div>
+        <div class="d-flex flex-column col-12 col-md-6 mt-2">
+            <label for="Price" class="form-label">Price</label>
+            <input type="text" name="Price" id="Price" class="form-control" value="<?= $disk_data->disc_price ?> €" disabled>
         </div>
     </div>
 
-    <p>Picture</p>
-    <img src="/public/images/<?= $disk_data->disc_picture ?>" alt="" class="w-96">
+    <p class="my-1 form-label">Picture</p>
+    <div class="mt-4">
+        <img src="/public/images/<?= $disk_data->disc_picture ?>" alt="" class="col-10 col-sm-8 col-lg-4">
+    </div>
 
-    <div class="flex mt-5">
-        <a class="bg-blue-700 text-white px-5 py-2 rounded-lg hover:bg-blue-600 mr-2"  href="index.php?action=update&id=<?= $disk_data->disc_id ?>" role="button">Modifier</a>
-        <a class="bg-blue-700 text-white px-5 py-2 rounded-lg hover:bg-blue-600 mr-2"  href="index.php?action=remove&id=<?= $disk_data->disc_id ?>" role="button">Supprimer</a>
-        <a class="bg-blue-700 text-white px-5 py-2 rounded-lg hover:bg-blue-600 mr-2"  href="index.php?action=liste" role="button">Retour</a>
+    <div class="mt-2">
+        <a class="btn btn-primary"  href="index.php?action=update&id=<?= $disk_data->disc_id ?>" role="button">Modifier</a>
+        <a class="btn btn-secondary"  href="index.php?action=remove&id=<?= $disk_data->disc_id ?>" role="button">Supprimer</a>
+        <a class="btn btn-danger"  href="index.php?action=liste" role="button">Retour</a>
     </div>
 
 </div>

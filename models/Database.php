@@ -4,6 +4,9 @@ use \PDO;
 
 class Database 
 {
+    protected $username = 'admin';
+    protected $password = 'admin';
+
     protected function connect($debug = false) 
     {
         if ($debug)
@@ -15,7 +18,7 @@ class Database
                     PDO::ATTR_CASE => PDO::CASE_NATURAL,
                     PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING
                 ];
-                $db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', 'root', '', $options); // $options
+                $db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', $this->username, $this->password, $options); // $options
                 return $db; 
             } 
             catch(Exception $e) 
@@ -27,7 +30,7 @@ class Database
         {
             try 
             {
-                $db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', 'root', ''); // $options
+                $db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', $this->username, $this->password); // $options
                 return $db; 
             } 
             catch(Exception $e) 
