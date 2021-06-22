@@ -1,42 +1,65 @@
 <?php 
-require '../DiskManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/DiskManager.php';
 use models\DiskManager; 
-require '../../controllers/imageManager.class.php'; 
-use controllers\ImageManager; 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/FileManager.php';
+use controllers\FileManager;
+require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/FormValidator.php';
+use controllers\FormValidator;
 
-$image_manager = new ImageManager(); 
-$disk_manager = new DiskManager(); 
+$image_manager = new FileManager();
+$disk_manager = new DiskManager();
+$form_validator = new FormValidator();
 
 // server side form validation
-if (strlen($_POST['title']) < 255 and strlen($_POST['Year']) < 255 and strlen($_POST['Genre']) < 255 and strlen($_POST['Label']) < 255 and preg_match('/^[0-9]{1,6}(\.[0-9]{1,2})?$/', $_POST['Price']) and preg_match('/^[0-9]+$/', $_POST['Artist_id'])) 
-{
-    // image management
-    if ($_FILES['disk_image']['size'] > 0)
-    {
-        $name = $image_manager->check_img('disk_image', $_POST['title']); 
-    
-        if($name)
-        {
-            // update image name in db.
-            $disk_manager->addDisk($_POST['title'], $_POST['Year'], $_POST['Label'], $_POST['Genre'], $_POST['Price'], $_POST['Artist_id'], $name); 
-    
-            header('Location: http://velvet-record.dvp/index.php');
-            
-        }
-        else 
-        {
-            header('Location: http://velvet-record.dvp/index.php?action=add&err=true');
-            $error = true;
-        }
-    }
-    else 
-    {
-        $disk_manager->addDisk($_POST['title'], $_POST['Year'], $_POST['Label'], $_POST['Genre'], $_POST['Price'], $_POST['Artist_id']); 
-    
-        header('Location: http://velvet-record.dvp/index.php');
-    }
+
+// Form error handling
+if (isset($_POST['submit']) == 'submit') {
+    $error = $form_validator->validate($_POST, array(
+        'title' => '/^[\d\w\s]+$/',
+        'genre' => '/^[\d\w\s]+$/',
+        'year' => '/^\d{1,4}$/',
+        'label' => '/^[\d\w\s]+$/',
+        'price' => '/^\d{1,6}(\.\d{1,2})*$/'
+    ));
 }
-else 
-{
-        header('Location: http://velvet-record.dvp/index.php');
+
+// image management
+if (isset($_POST['submit'])) {
+
+    if ($_FILES['disk_image']['size'] > 0 && empty($error))
+    {
+        $is_valid_img = $image_manager->check_img('disk_image', $_POST['title']);
+
+        if($is_valid_img)
+        {
+            // send data in db.
+            $disk_manager->addDisk(
+                $_POST['title'],
+                $_POST['year'],
+                $_POST['label'],
+                $_POST['genre'],
+                $_POST['price'],
+                $_POST['artist_id'],
+                $is_valid_img);
+
+            header('Location: index.php?1=1');
+
+        }
+        else
+        {
+            $error['disk_image'] = 'Format d\'image interdit';
+        }
+    }
+    elseif (empty($error))
+    {
+        $disk_manager->addDisk(
+            $_POST['title'],
+            $_POST['year'],
+            $_POST['label'],
+            $_POST['genre'],
+            $_POST['price'],
+            $_POST['artist_id']);
+
+        header('Location: index.php?1=2');
+    }
 }

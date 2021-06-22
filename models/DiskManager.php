@@ -2,14 +2,15 @@
 namespace models; 
 
 require 'Database.php';
-use models\Database;  
+use models\Database;
 use \PDO;
 
-class DiskManager extends Database 
+class DiskManager extends Database
 {
+
     public function getDisk()
     {
-        $db = $this->connect(); 
+        $db = $this->connect();
 
         $request = $db->query('SELECT * FROM disc JOIN artist ON artist.artist_id = disc.artist_id');
 
@@ -56,13 +57,13 @@ class DiskManager extends Database
             WHERE disc_id = :id; 
         "); 
 
-        $request->bindValue(':title', $title); 
-        $request->bindValue(':year', $year); 
-        $request->bindValue(':label', $label); 
-        $request->bindValue(':genre', $genre); 
-        $request->bindValue(':price', $price); 
-        $request->bindValue(':artist_id', $artist_id); 
-        $request->bindValue(':id', $id); 
+        $request->bindValue(':title', htmlspecialchars($title));
+        $request->bindValue(':year', htmlspecialchars($year));
+        $request->bindValue(':label', htmlspecialchars($label));
+        $request->bindValue(':genre', htmlspecialchars($genre));
+        $request->bindValue(':price', htmlspecialchars($price));
+        $request->bindValue(':artist_id', htmlspecialchars($artist_id));
+        $request->bindValue(':id', $id);
 
         $request->execute(); 
     }
@@ -76,13 +77,13 @@ class DiskManager extends Database
             VALUES (:title, :year, :label, :genre, :price, :artist_id, :image);
         ");
 
-        $request->bindValue(':title', $title); 
-        $request->bindValue(':year', $year); 
-        $request->bindValue(':label', $label); 
-        $request->bindValue(':genre', $genre); 
-        $request->bindValue(':price', $price);
+        $request->bindValue(':title', htmlspecialchars($title));
+        $request->bindValue(':year', htmlspecialchars($year));
+        $request->bindValue(':label', htmlspecialchars($label));
+        $request->bindValue(':genre', htmlspecialchars($genre));
+        $request->bindValue(':price', htmlspecialchars($price));
         $request->bindValue(':image', $image);
-        $request->bindValue(':artist_id',  $artist_id);
+        $request->bindValue(':artist_id',  htmlspecialchars($artist_id));
 
         $request->execute();
     }

@@ -1,10 +1,10 @@
 <?php 
 namespace controllers; 
 
-class ImageManager {
+class FileManager {
     private $authorised_types = ["image/gif", "image/jpeg", "image/pjpeg", "image/png"]; 
 
-    public function check_img($input_name, $image_name = 'temporary')
+    public function check_img($input_name, $image_name)
     {
         // initialising finfo
         $finfo = finfo_open(FILEINFO_MIME_TYPE);

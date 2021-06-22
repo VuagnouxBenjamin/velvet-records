@@ -70,7 +70,7 @@
     </form>
 </div>
 
-<script src="../public/js/update.form.js"></script>
+<script src="../public/js/validateForm.js"></script>
 
 <!-- end of recording & declaration of $content -->
 <?php $content = ob_get_clean(); ?>

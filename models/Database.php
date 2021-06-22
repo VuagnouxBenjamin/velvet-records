@@ -6,38 +6,39 @@ class Database
 {
     protected $username = 'admin';
     protected $password = 'admin';
+    protected $db;
 
-    protected function connect($debug = false) 
+    static function getInstance() {
+        if (is_null(self::$_instance)) {
+            try
+            {
+                self::$_instance = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', self::$username, self::$password); // $options
+                return self::$_instance;
+            }
+            catch(Exception $e)
+            {
+                die('Erreur : ' . $e->getMessage());
+            }
+        } else {
+            return self::$_instance;
+        }
+    }
+
+
+    protected function connect()
     {
-        if ($debug)
-        {
-            try 
+
+        if (is_null($this->db)) {
+            try
             {
-                $options = [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_CASE => PDO::CASE_NATURAL,
-                    PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING
-                ];
-                $db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', $this->username, $this->password, $options); // $options
-                return $db; 
-            } 
-            catch(Exception $e) 
+                $this->db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', $this->username, $this->password); // $options
+                return $this->db;
+            }
+            catch(Exception $e)
             {
-                die('Erreur : ' . $e->getMessage()); 
+                die('Erreur : ' . $e->getMessage());
             }
         }
-        else 
-        {
-            try 
-            {
-                $db = new \PDO('mysql:host=localhost;dbname=record;charset=utf8', $this->username, $this->password); // $options
-                return $db; 
-            } 
-            catch(Exception $e) 
-            {
-                die('Erreur : ' . $e->getMessage()); 
-            }
-        }
-        
+        return $this->db;
     }
 }

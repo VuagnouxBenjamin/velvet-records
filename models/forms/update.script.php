@@ -1,10 +1,10 @@
 <?php 
 require '../DiskManager.php'; 
 use models\DiskManager;
-require '../../controllers/imageManager.class.php'; 
-use controllers\ImageManager; 
+require '../../controllers/FileManager.php';
+use controllers\FileManager;
 
-$image_manager = new ImageManager(); 
+$image_manager = new FileManager();
 $disk_manager = new DiskManager(); 
 
 
