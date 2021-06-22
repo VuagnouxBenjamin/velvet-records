@@ -15,10 +15,10 @@ $form_validator = new FormValidator();
 // Form error handling
 if (isset($_POST['submit']) == 'submit') {
     $error = $form_validator->validate($_POST, array(
-        'title' => '/^[\d\w\s]+$/',
-        'genre' => '/^[\d\w\s]+$/',
+        'title' => '/^[\d\w\s,éèà]+$/',
+        'genre' => '/^[\d\w\s,éèà]+$/',
         'year' => '/^\d{1,4}$/',
-        'label' => '/^[\d\w\s]+$/',
+        'label' => '/^[\d\w\s,éèà]+$/',
         'price' => '/^\d{1,6}(\.\d{1,2})*$/'
     ));
 }

@@ -53,7 +53,7 @@ form.addEventListener('submit', function(e) {
     if (!textRegex.test(document.querySelector('#label').value)) {
         e.preventDefault()
         document.querySelector('#err_label').innerHTML = 'Charactères spéciaux non autorisés'
-    } else if (document.querySelector('#label').value.length > 10) {
+    } else if (document.querySelector('#label').value.length > 100) {
         e.preventDefault()
         document.querySelector('#err_label').innerHTML = 'Label trop long : doit être < à 100 charactères'
     } else {
